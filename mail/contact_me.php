@@ -1,15 +1,7 @@
 <?php 
 
 // Check for empty fields
-// if(empty($_POST['name'])  		||
-//    empty($_POST['email']) 		||
-//    empty($_POST['phone']) 		||
-//    empty($_POST['message'])	||
-//    !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-//    {
-// 	echo "No arguments Provided!";
-// 	return false;
-//    }
+
 	
 // $name = strip_tags(htmlspecialchars($_POST['name']));
 // $email_address = strip_tags(htmlspecialchars($_POST['email']));
@@ -34,27 +26,30 @@ $mail->IsSMTP(); // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com'; // Specify main and backup server
 $mail->Port = 587; // Set the SMTP port
 $mail->SMTPAuth = true; // Enable SMTP authentication
-$mail->Username = 'kshin25bolima@gmail.com'; // SMTP username
-$mail->Password = '_kshin25'; // SMTP password
+$mail->Username = 'lloreradondi@gmail.com'; // SMTP username
+$mail->Password = 'loreradondi0A'; // SMTP password
 $mail->SMTPSecure = 'tls'; // Enable encryption, 'ssl' also accepted
 
-$mail->From = 'kshin25bolima@gmail.com';
-$mail->FromName = 'Sample Website';
+$mail->From = 'lloreradondi@gmail.com';
+$mail->FromName = 'Dione LLorera';
 
-$mail->AddAddress ("dione@tagcash.com"); // Add a recipient
+$mail->AddAddress ("lloreradondi@gmail.com", "Dione Llorera"); // Add a recipient
 //$mail->AddAddress('ellen@example.com'); // Name is optional
 
 $mail->IsHTML(true); // Set email format to HTML
 
-$mail->Subject = 'Activate your account';
-$mail->Body = "<h2>Sample Website account</h2>To activate your account copy this confirmation code below <br> <h3>$randstring</h3>";
+$mail->Subject = 'Portfolio Contact';
+$mail->Body = 'Hello I am '.$_POST['name'].'.<br>My Contact Number is '.$_POST['phone'].' '.'<br>'.$_POST['message'];
 $isSuccess = true;
-if(!$mail->Send()) {
-echo "mail not sent";
-$isSuccess = false;
+if(empty($_POST['name'])||empty($_POST['email']) ||empty($_POST['phone'])||empty($_POST['message'])||!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
+	$isSuccess = false;
 }else{
-echo "mail_send";
-}
-
-return true;
+	if(!$mail->Send()) {
+		echo "Mailer Error: " . $mail->ErrorInfo;
+		$isSuccess = false;
+	}else{
+		echo "mail_send";
+	}	
+} 
+return $isSuccess;
 ?>
