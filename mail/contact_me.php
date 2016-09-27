@@ -22,7 +22,7 @@ $length = 10;
 $randstring = rand(6,999999);
 $mail = new PHPMailer();
 
-$mail->IsSMTP(); // Set mailer to use SMTP
+//$mail->IsSMTP(); // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com'; // Specify main and backup server
 $mail->Port = 587; // Set the SMTP port
 $mail->SMTPAuth = true; // Enable SMTP authentication
