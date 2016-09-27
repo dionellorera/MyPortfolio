@@ -17,7 +17,8 @@
 // mail($to,$email_subject,$email_body,$headers);
 
 // return true;		
-require('mailer/class.phpmailer.php');
+require 'mailer/class.phpmailer.php';
+require 'mailer/class.smtp.php';
 $length = 10;
 $randstring = rand(6,999999);
 $mail = new PHPMailer();
